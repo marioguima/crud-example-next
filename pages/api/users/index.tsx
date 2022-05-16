@@ -2,8 +2,17 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import User from 'src/models/User';
 import dbConnection from 'src/services/database';
 
+interface ErrorResponseType {
+  sucess: boolean;
+  error: unknown;
+}
 
-export default async function user(req: NextApiRequest, res: NextApiResponse) {
+interface SucessResponseType {
+  sucess: boolean;
+  data: {}[];
+}
+
+export default async function user(req: NextApiRequest, res: NextApiResponse<ErrorResponseType | SucessResponseType>) {
   const { method } = req;
 
   switch (method) {
